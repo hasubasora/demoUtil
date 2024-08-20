@@ -43,11 +43,11 @@ extension UITextField {
 // 各 UITextField に小さな三角形ボタンを追加
 func addDropdownImage(to textField: UITextField) {
     let dropdownImage = UIImageView(image: UIImage(named: "ma_ui_dropdown_expand"))
-    dropdownImage.frame = CGRect(x: 0, y: 0, width: 12, height: 12)
+    dropdownImage.frame = CGRect(x: 0, y: 0, width: 13, height: 13)
     dropdownImage.contentMode = .scaleAspectFit
     
     // パディングビューを画像のサイズより大きくする
-    let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+    let paddingView = UIView(frame: CGRect(x: -2, y: 0, width: 24, height: 24))
     dropdownImage.center = paddingView.center
     paddingView.addSubview(dropdownImage)
     

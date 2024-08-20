@@ -1,17 +1,27 @@
-//
-//  ViewController.swift
-//  demoUtil
-//
-//  Created by 羽柴空 on 2024/05/21.
-//
-
 import UIKit
+import CryptoSwift
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // 使用示例
+        let keyString = "89d91e4c2f35e49322f43e3547917e21"
+        let dataString = "123@gmail.com"
+
+        do {
+            let encryptedResult = try aesEncryptECB(data: dataString, keyHex: keyString)
+            print("Encrypted: \(encryptedResult ?? "Encryption failed")")
+            // 解密
+            if let decryptedText = try aesDecryptECB(encryptedBase64: encryptedResult!, keyHex: keyString) {
+                print("Decrypted: \(decryptedText)")
+            }
+        } catch {
+            print("Encryption error: \(error)")
+        }
+        
+     
     }
 
 

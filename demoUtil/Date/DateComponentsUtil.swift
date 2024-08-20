@@ -7,16 +7,20 @@
 
 import Foundation
 
-// 現在の年を取得
-func getCurrentYear() -> Int {
+/// 現在の年を取得します。
+///
+/// - Returns: 現在の年
+public func getCurrentYear() -> Int {
     let currentDate = Date()
-    let calendar = Calendar.current
-    let currentYear = calendar.component(.year, from: currentDate)
+    let gregorianCalendar = Calendar(identifier: .gregorian)
+    let currentYear = gregorianCalendar.component(.year, from: currentDate)
     return currentYear
 }
 
-// 過去100年の配列を取得
-func getYearsArray() -> [String] {
+/// 過去100年の配列を取得します。
+///
+/// - Returns: 過去100年の文字列配列
+public func getYearsArray() -> [String] {
     let currentYear = getCurrentYear()
     var yearsArray: [String] = []
     for year in (currentYear - 100)...currentYear {
@@ -25,21 +29,33 @@ func getYearsArray() -> [String] {
     return yearsArray
 }
 
-// 現在の年から25年前の年を取得
-func getYear25YearsAgo() -> String {
+/// 現在の年から25年前の年を取得します。
+///
+/// - Returns: 現在の年から25年前の年の文字列
+public func getYear25YearsAgo() -> String {
     let currentYear = getCurrentYear()
     return String(currentYear - 25)
 }
 
-// 特定の年のインデックスを取得
-func getIndexOfYear(_ year: String, in yearsArray: [String]) -> Int? {
+/// 特定の年のインデックスを取得します。
+///
+/// - Parameters:
+///   - year: 特定の年の文字列
+///   - yearsArray: 年の配列
+/// - Returns: 特定の年のインデックス
+public func getIndexOfYear(_ year: String, in yearsArray: [String]) -> Int? {
     return yearsArray.firstIndex(of: year)
 }
 
-// 月の配列を取得
-func getMonthsArray(for year: String) -> [String] {
-    let currentYear = Calendar.current.component(.year, from: Date())
-    let currentMonth = Calendar.current.component(.month, from: Date())
+/// 月の配列を取得します。
+///
+/// - Parameters:
+///   - year: 年の文字列
+/// - Returns: 月の文字列配列
+public func getMonthsArray(for year: String) -> [String] {
+    let gregorianCalendar = Calendar(identifier: .gregorian)
+    let currentYear = gregorianCalendar.component(.year, from: Date())
+    let currentMonth = gregorianCalendar.component(.month, from: Date())
 
     guard let yearInt = Int(year) else {
         return []
@@ -57,43 +73,33 @@ func getMonthsArray(for year: String) -> [String] {
     }
 }
 
-// 指定された年と月の日の配列を取得
-//func getDaysArray(year: Int, month: Int) -> [Int] {
-//    let calendar = Calendar.current
-//    var days: [Int] = []
-//    var dateComponents = DateComponents()
-//    dateComponents.year = year
-//    dateComponents.month = month
-//
-//    if let date = calendar.date(from: dateComponents),
-//       let range = calendar.range(of: .day, in: .month, for: date) {
-//        days = Array(range)
-//    }
-//    return days
-//}
-
-// 指定された年と月の日の配列を取得
-func getDaysArray(year: String, month: String) -> [String] {
+/// 指定された年と月の日の配列を取得します。
+///
+/// - Parameters:
+///   - year: 年の文字列
+///   - month: 月の文字列
+/// - Returns: 日の文字列配列
+public func getDaysArray(year: String, month: String) -> [String] {
     guard let yearInt = Int(year), let monthInt = Int(month) else {
         return []
     }
 
-    let calendar = Calendar.current
+    let gregorianCalendar = Calendar(identifier: .gregorian)
     var days: [String] = []
     var dateComponents = DateComponents()
     dateComponents.year = yearInt
     dateComponents.month = monthInt
 
-    if let date = calendar.date(from: dateComponents),
-       let range = calendar.range(of: .day, in: .month, for: date) {
+    if let date = gregorianCalendar.date(from: dateComponents),
+       let range = gregorianCalendar.range(of: .day, in: .month, for: date) {
         let currentDate = Date()
-        let currentYear = calendar.component(.year, from: currentDate)
-        let currentMonth = calendar.component(.month, from: currentDate)
-        let currentDay = calendar.component(.day, from: currentDate)
+        let currentYear = gregorianCalendar.component(.year, from: currentDate)
+        let currentMonth = gregorianCalendar.component(.month, from: currentDate)
+        let currentDay = gregorianCalendar.component(.day, from: currentDate)
 
         for day in range {
             dateComponents.day = day
-            if let _ = calendar.date(from: dateComponents),
+            if let _ = gregorianCalendar.date(from: dateComponents),
                yearInt < currentYear || (yearInt == currentYear && monthInt < currentMonth) || (yearInt == currentYear && monthInt == currentMonth && day <= currentDay) {
                 days.append(String(day))
             }
@@ -120,3 +126,14 @@ func getDaysArray(year: String, month: String) -> [String] {
 
  */
 
+func getCurrentYearMonth() -> String {
+    let calendar = Calendar(identifier: .gregorian)
+    let date = Date()
+    let components = calendar.dateComponents([.year, .month], from: date)
+    
+    if let year = components.year, let month = components.month {
+        return String(format: "%04d%02d", year, month)
+    } else {
+        return ""
+    }
+}

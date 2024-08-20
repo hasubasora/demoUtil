@@ -1,13 +1,13 @@
 //
-//  PickerUtil.swift
-//  demoUtil
+//  PickerViewManager.swift
+//  CoreApp
 //
-//  Created by 羽柴空 on 2024/05/21.
+//  Created by CHEN YONGHAN on 2024/01/18.
 //
 import UIKit
 
-// PickerUtil、UIPickerViewDataSourceを適用するPickerViewManagerクラスを定義します
-final class PickerUtil: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
+// UIPickerViewDelegate、UIPickerViewDataSourceを適用するPickerViewManagerクラスを定義します
+final class PickerViewManager: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     // ピッカービューを管理するためのプロパティ
     private var pickerView: UIPickerView?
     // ピッカービューのトリガーとなるテキストフィールド
@@ -17,7 +17,9 @@ final class PickerUtil: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
     // ピッカービューに表示するデータの配列
     private var data: [[String]] = []
     // ピッカービューで選択された項目を処理するクロージャ
-    private var selectionCompletion: (([String]) -> Void)?
+    private var selectionCompletion: (([String], [Int]) -> Void)?
+    // デフォルトの選択インデックス
+    private var defaultSelectionIndexes: [Int]?
 
     // 初期化
     init(viewController: UIViewController) {
@@ -51,18 +53,11 @@ final class PickerUtil: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         pickerViewTriggerField.inputAccessoryView = toolbar
     }
     
-    // ピッカービューを表示するメソッド
-   public func showPicker(with data: [[String]], completion: @escaping ([String]) -> Void) {
-        self.data = data
-        self.selectionCompletion = completion
-        pickerView?.reloadAllComponents()
-        pickerViewTriggerField.becomeFirstResponder()
-    }
-    
     // デフォルトの選択インデックスを指定してピッカービューを表示するメソッド
-    public func showPicker(with data: [[String]], defaultSelectionIndexes: [Int]? = nil, completion: @escaping ([String]) -> Void) {
+    public func showPicker(with data: [[String]], defaultSelectionIndexes: [Int]? = nil, completion: @escaping ([String], [Int]) -> Void) {
         self.data = data
         self.selectionCompletion = completion
+        self.defaultSelectionIndexes = defaultSelectionIndexes
         // ピッカービューをリロード
         pickerView?.reloadAllComponents()
 
@@ -84,14 +79,16 @@ final class PickerUtil: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         // ピッカービューを閉じる
         pickerViewTriggerField.resignFirstResponder()
         var selections: [String] = []
+        var selectedIndexes: [Int] = []
         for i in 0..<(pickerView?.numberOfComponents ?? 0) {
             let selectedRow = pickerView?.selectedRow(inComponent: i) ?? 0
             if i < data.count {
                 selections.append(data[i][selectedRow])
+                selectedIndexes.append(selectedRow)
             }
         }
-        // 選択された項目を処理
-        selectionCompletion?(selections)
+        // 選択された項目を処理 - index　追加
+        selectionCompletion?(selections, selectedIndexes)
     }
     // ピッカービューのコンポーネント数を返すメソッド
     internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -106,33 +103,3 @@ final class PickerUtil: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         return data[component][row]
     }
 }
-
-/*
- //使用方法
- private var pickerViewManager: PickerViewManager!
- 
- //声明创建这个类
- let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
- view.addGestureRecognizer(tapGesture)
- pickerViewManager = PickerViewManager(viewController: self)
- 
- //关闭选择框
- @objc func dismissKeyboard() {
-     view.endEditing(true)
- }
- 
- 使用方法
- yearsArray 是单数组
- 使用需要双重数组
- defaultSelectionIndexes是默认打开的第几个
- 
- pickerViewManager.showPicker(with: [yearsArray], defaultSelectionIndexes: [indexOfYear]) { [weak self] selections in
-     guard let self = self else { return }
-     self.yearTextField.text = selections[0]
-     textFieldDidEndEditing(yearTextField)
-     // 現在の年が選択された場合、月フィールドをクリアする
-     if let selectedYear = selections.first, selectedYear == String(Calendar.current.component(.year, from: Date())) {
-         self.monthTextField.text = ""
-     }
- }
- */
