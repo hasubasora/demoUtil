@@ -9,10 +9,10 @@ import Foundation
 
 #if canImport(NautilusAnalyticsSDK)
 private func setUserProperty(){
-        ///ユーザープロパティ設定
-        let user = NautilusIdentify.identify().getCurrentUser()
-        analytics.setUserID(user.pid)
-        analytics.sendUserProperty()
+///ユーザープロパティ設定
+let user = NautilusIdentify.identify().getCurrentUser()
+analytics.setUserID(user.pid)
+analytics.sendUserProperty()
 }
 #endif
 

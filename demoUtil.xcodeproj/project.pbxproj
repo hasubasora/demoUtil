@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B15FB5AA27857072CA54135 /* Pods_demoUtil_demoUtilUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7354F2361CD52E5DA3AD59 /* Pods_demoUtil_demoUtilUITests.framework */; };
 		D16325ED2588360291CD6BB0 /* Pods_demoUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1316E18332D37252CB480EA /* Pods_demoUtil.framework */; };
+		F22221CD2CA53357000F969A /* WebViewSignin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22221CC2CA53357000F969A /* WebViewSignin.swift */; };
 		F235F2AB2C0DA2F700EDB511 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235F2AA2C0DA2F700EDB511 /* CircularProgressBar.swift */; };
 		F235F3EC2C131C2E00EDB511 /* Generate128BarcodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235F3EB2C131C2E00EDB511 /* Generate128BarcodeUtil.swift */; };
 		F235F3F32C17E92500EDB511 /* CupControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F235F3F22C17E92500EDB511 /* CupControllerView.swift */; };
@@ -18,6 +19,7 @@
 		F23C1E532C4131680001029A /* NumberFormatJPUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C1E522C4131680001029A /* NumberFormatJPUtil.swift */; };
 		F23C1E552C4135800001029A /* CodeManagerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C1E542C4135800001029A /* CodeManagerUtil.swift */; };
 		F23C1E672C46122A0001029A /* InitialNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C1E662C46122A0001029A /* InitialNetworkConnection.swift */; };
+		F248ABBE2CC221BB00962A1A /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F248ABBD2CC221BB00962A1A /* DataStorageManager.swift */; };
 		F25A21B52C23F4C50060758E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = F25A21B42C23F4C50060758E /* data.json */; };
 		F25A21BB2C2408D90060758E /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A21BA2C2408D90060758E /* File.swift */; };
 		F27894CC2C524570009F61A4 /* GenerateQRCodeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27894CB2C524570009F61A4 /* GenerateQRCodeUtil.swift */; };
@@ -76,6 +78,7 @@
 		B1316E18332D37252CB480EA /* Pods_demoUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B49FC62CC49BE498FE4C3D5B /* Pods_demoUtilTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demoUtilTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCA9E5836BA95212D8535451 /* Pods-demoUtil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoUtil.debug.xcconfig"; path = "Target Support Files/Pods-demoUtil/Pods-demoUtil.debug.xcconfig"; sourceTree = "<group>"; };
+		F22221CC2CA53357000F969A /* WebViewSignin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewSignin.swift; sourceTree = "<group>"; };
 		F235F2AA2C0DA2F700EDB511 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		F235F3EB2C131C2E00EDB511 /* Generate128BarcodeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generate128BarcodeUtil.swift; sourceTree = "<group>"; };
 		F235F3F22C17E92500EDB511 /* CupControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CupControllerView.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		F23C1E522C4131680001029A /* NumberFormatJPUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatJPUtil.swift; sourceTree = "<group>"; };
 		F23C1E542C4135800001029A /* CodeManagerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeManagerUtil.swift; sourceTree = "<group>"; };
 		F23C1E662C46122A0001029A /* InitialNetworkConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialNetworkConnection.swift; sourceTree = "<group>"; };
+		F248ABBD2CC221BB00962A1A /* DataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageManager.swift; sourceTree = "<group>"; };
 		F25A21B42C23F4C50060758E /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		F25A21BA2C2408D90060758E /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		F27894CB2C524570009F61A4 /* GenerateQRCodeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRCodeUtil.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		F2CEB93E2C65B4BC00DB077A /* CurrentDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDate.swift; sourceTree = "<group>"; };
 		F2CEB9402C65C85D00DB077A /* ValidationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationHelper.swift; sourceTree = "<group>"; };
 		F2CEBBA32C74BFEF00DB077A /* ECBCryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECBCryptor.swift; sourceTree = "<group>"; };
+		F2E41CD52C91706C00A9B875 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		F2E41CD62C91706C00A9B875 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +223,8 @@
 				F23C1E522C4131680001029A /* NumberFormatJPUtil.swift */,
 				F23C1E542C4135800001029A /* CodeManagerUtil.swift */,
 				F2CEB9402C65C85D00DB077A /* ValidationHelper.swift */,
+				F22221CC2CA53357000F969A /* WebViewSignin.swift */,
+				F248ABBD2CC221BB00962A1A /* DataStorageManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -450,11 +458,12 @@
 			};
 			buildConfigurationList = F2808ACB2BFC53E50098615D /* Build configuration list for PBXProject "demoUtil" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ja;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = F2808AC72BFC53E50098615D;
 			productRefGroup = F2808AD12BFC53E50098615D /* Products */;
@@ -606,6 +615,7 @@
 			files = (
 				F23C1E552C4135800001029A /* CodeManagerUtil.swift in Sources */,
 				F27894D32C59CA95009F61A4 /* AESCryptorUtil.swift in Sources */,
+				F22221CD2CA53357000F969A /* WebViewSignin.swift in Sources */,
 				F23C1E672C46122A0001029A /* InitialNetworkConnection.swift in Sources */,
 				F27894D52C59CB7B009F61A4 /* CustomFormJP.swift in Sources */,
 				F2808B362BFF0F550098615D /* FormEyeUtil.swift in Sources */,
@@ -632,6 +642,7 @@
 				F2808B9B2C05BF4F0098615D /* NavigationBarConfigurator.swift in Sources */,
 				F235F3EC2C131C2E00EDB511 /* Generate128BarcodeUtil.swift in Sources */,
 				F2808B962C05A8740098615D /* LinkHandler.swift in Sources */,
+				F248ABBE2CC221BB00962A1A /* DataStorageManager.swift in Sources */,
 				F2808B082BFC61250098615D /* PickerViewManager.swift in Sources */,
 				F235F2AB2C0DA2F700EDB511 /* CircularProgressBar.swift in Sources */,
 			);
@@ -674,6 +685,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F2808ADA2BFC53E50098615D /* Base */,
+				F2E41CD52C91706C00A9B875 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -682,6 +694,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F2808ADF2BFC53E70098615D /* Base */,
+				F2E41CD62C91706C00A9B875 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -694,6 +707,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -757,6 +771,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -814,11 +829,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AM3PDKJ6MN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = demoUtil/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -848,11 +864,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AM3PDKJ6MN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = demoUtil/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

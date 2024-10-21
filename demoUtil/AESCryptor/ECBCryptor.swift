@@ -83,4 +83,46 @@ extension String {
  } catch {
      print("Encryption error: \(error)")
  }
+ 
+ // 解密
+        if let decryptedText = try aesDecryptECB(encryptedBase64: encryptedBase64, keyHex: keyHex) {
+            print("Decrypted: \(decryptedText)")
+        }
  */
+
+/// 通用的加密/解密方法
+/// - Parameters:
+///   - input: 要加密或解密的输入字符串
+///   - isEncrypt: 如果为 `true`，执行加密；如果为 `false`，执行解密
+/// - Returns: 加密后的 Base64 字符串或解密后的明文字符串
+//func processEncryption(input: String, isEncrypt: Bool) -> String? {
+//    // 合并密钥字符串
+//    let keyString = EncryptionConstants.ENCRYPT_KEY + EncryptionConstants.INIT_VECTOR
+//    
+//    do {
+//        if isEncrypt {
+//            // 执行加密操作
+//            let encryptedResult = try aesEncryptECB(data: input, keyHex: keyString)
+//            print("Encrypted: \(encryptedResult ?? "Encryption failed")")
+//            return encryptedResult
+//        } else {
+//            // 执行解密操作
+//            if let decryptedText = try aesDecryptECB(encryptedBase64: input, keyHex: keyString) {
+//                print("Decrypted: \(decryptedText)")
+//                return decryptedText
+//            }
+//        }
+//    } catch {
+//        print("\(isEncrypt ? "Encryption" : "Decryption") error: \(error)")
+//    }
+//    
+//    return nil
+//}
+//
+//// 示例用法：
+//// 加密
+//let encryptedText = processEncryption(input: "Hello, World!", isEncrypt: true)
+//
+//// 解密
+//let decryptedText = processEncryption(input: encryptedText ?? "", isEncrypt: false)
+//

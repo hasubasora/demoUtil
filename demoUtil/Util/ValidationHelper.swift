@@ -24,7 +24,17 @@ class ValidationHelper {
         return text.count >= minLength && text.count <= maxLength
     }
     
-//    validator.isValidUserIdOrPassword(text)
+    // メソッド：非数字の文字を削除して数字のみを返す
+    // - Parameters:
+    //   - text: 処理する文字列
+    // - Returns: テキストから数字以外の文字を削除した新しい文字列
+    // 正規表現を使用して、テキストから数字以外のすべての文字を削除し、数字のみを含む文字列を返すメソッド
+    func removeNonNumericCharacters(_ text: String) -> String {
+        return text.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+    }
+
+    
+    //    validator.isValidUserIdOrPassword(text)
     // メソッド：ユーザーIDとパスワードが有効かどうかをチェック
     //
     // - Parameter text: チェックするユーザーIDまたはパスワード
@@ -35,7 +45,8 @@ class ValidationHelper {
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
     }
     
-//    validator.containsHiraganaAndKanji(text)
+    //    validator.containsHiraganaAndKanji(text)
+    
     // メソッド：文字列に漢字とひらがなが含まれているかをチェック
     //
     // - Parameter text: チェックする文字列
@@ -46,8 +57,8 @@ class ValidationHelper {
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
     }
     
-//    validator.containsOnlyKatakana(text)
-//    只检查片假名
+    //MARK: - 只检查片假名
+    //    validator.containsOnlyKatakana(text)
     // メソッド：文字列が片仮名のみを含むかどうかをチェック
     //
     // - Parameter text: チェックする文字列
@@ -78,7 +89,7 @@ class ValidationHelper {
         
         return Calendar(identifier: .gregorian).date(from: dateComponents) != nil
     }
-    
+    //MARK: - 检查邮件
     // メソッド：メールアドレスの形式を検証します（正規表現版）
     //
     // - Parameter email: チェックするメールアドレス
@@ -88,6 +99,7 @@ class ValidationHelper {
         return NSPredicate(format: "SELF MATCHES %@", emailRegEx).evaluate(with: email)
     }
     
+    //MARK: - 检查纯数字
     // メソッド：数字の入力が有効かどうかを検証
     //
     // - Parameter text: チェックする文字列
@@ -98,8 +110,9 @@ class ValidationHelper {
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
     }
     
-//    validationHelper.isValidInput(username)
-//
+    //    validationHelper.isValidInput(username)
+    
+    //MARK: -  检查英文数字的结合
     // メソッド：指定された入力が特定の正規表現ルールに一致するかを確認します。
     //
     // - Parameter input: 検証する文字列
@@ -109,7 +122,56 @@ class ValidationHelper {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
         return predicate.evaluate(with: input)
     }
+    
+    //MARK: -  日文检测片假名和其他是不是全角
+    //// 示例测试
+    //print(isFullWidth(input: "ＡＢＣ１２３")) // 输出：true
+    //print(isFullWidth(input: "ABC123"))     // 输出：false
+    //print(isFullWidth(input: "あ漢。"))      // 输出：false
+    //print(isFullWidth(input: "アイウ"))      // 输出：true
+    func isFullWidth1(input: String) -> Bool {
+        for character in input {
+            for scalar in character.unicodeScalars {
+                let value = scalar.value
+                // 检查字符是否在全角字符的范围内
+                if !(value >= 0xFF01 && value <= 0xFF60) && !(value >= 0xFFE0 && value <= 0xFFE6) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    //MARK: -  日文检测平假名和其他是不是全角
+    //// テスト例
+    //print(isFullWidth(input: ""))         // 出力：true
+    //print(isFullWidth(input: "あ漢。"))    // 出力：true
+    //print(isFullWidth(input: "アイウ"))    // 出力：true
+    //print(isFullWidth(input: "ABC123"))   // 出力：false
+    //print(isFullWidth(input: "ＡＢＣ１２３")) // 出力：true
+    func isFullWidth(input: String) -> Bool {
+        // 入力が空文字列の場合、trueを返す
+        if input.isEmpty {
+            return true
+        }
+        
+        for character in input {
+            for scalar in character.unicodeScalars {
+                let value = scalar.value
+                // 文字が全角かどうかをチェックする
+                if !(value >= 0xFF01 && value <= 0xFF60) &&  // 全角ASCII範囲
+                    !(value >= 0xFFE0 && value <= 0xFFE6) &&  // 全角記号範囲
+                    !(value >= 0x3000 && value <= 0x303F) &&  // 日本語記号と句読点
+                    !(value >= 0x3040 && value <= 0x309F) &&  // ひらがな
+                    !(value >= 0x30A0 && value <= 0x30FF) &&  // カタカナ
+                    !(value >= 0x4E00 && value <= 0x9FFF) {   // 漢字
+                    return false
+                }
+            }
+        }
+        return true
+    }
 }
+//MARK: -  extension
 
 // UnicodeScalarの拡張
 extension UnicodeScalar {
